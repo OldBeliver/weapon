@@ -6,14 +6,7 @@ using System.Threading.Tasks;
 
 namespace weapon
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-        }
-    }
-
-    class Weapon
+     class Weapon
     {
         private readonly int _damage;
         private int _bullets;
