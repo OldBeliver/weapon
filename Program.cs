@@ -87,6 +87,12 @@ namespace weapon
     {
         private Weapon _weapon;
 
+        public Bot(Weapon weapon)
+        {
+            if (weapon is null)
+                throw new ArgumentNullException($"раз в 100 лет и {nameof(weapon)} стреляет");
+        }
+
         public void OnSeePlayer(Player player)
         {
             if (player is null)
