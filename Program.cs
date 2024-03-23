@@ -38,7 +38,7 @@ namespace weapon
     {
         private readonly int _damage;
 
-        //public int Bullets { get; private set; }
+        public int Bullets { get; private set; }
 
         public void Fire(Player player)
         {
