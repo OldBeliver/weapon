@@ -59,10 +59,12 @@ namespace weapon
             if (damage < 0)
                 throw new ArgumentOutOfRangeException($"отрицательный {nameof(damage)}");
 
-            if (damage >= _health)
-                _health = 0;
-            else
-                _health -= damage;
+            //if (damage >= _health)
+            //    _health = 0;
+            //else
+            //    _health -= damage;
+
+            _health = Math.Max(0, _health - damage);
         }
     }
 
