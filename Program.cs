@@ -42,7 +42,7 @@ namespace weapon
                 throw new ArgumentOutOfRangeException($"{nameof(damage)} неожиданно стал отрицательным");
 
             if (bullets < 0)
-                throw new ArgumentOutOfRangeException($"{nameof(bullets)} неожиданно стали отрицательными");
+                throw new ArgumentOutOfRangeException($"подайте {nameof(bullets)} поручик Галицин");
 
             _damage = damage;
             Bullets = bullets;
@@ -64,15 +64,20 @@ namespace weapon
     {
         private int _health;
 
+        public Player(int health)
+        {
+            if (health < 0)
+            {
+                throw new ArgumentOutOfRangeException($"{_health} уже не то");
+            }
+
+            _health = health;
+        }
+
         public void TakeDamage(int damage)
         {
             if (damage < 0)
                 throw new ArgumentOutOfRangeException($"отрицательный {nameof(damage)}");
-
-            //if (damage >= _health)
-            //    _health = 0;
-            //else
-            //    _health -= damage;
 
             _health = Math.Max(0, _health - damage);
         }
