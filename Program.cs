@@ -50,9 +50,11 @@ namespace weapon
 
         public int Bullets { get; private set; }
 
+        public bool HaveBullets => Bullets > 0;
+
         public void Fire(Player player)
         {
-            if (Bullets > 0)
+            if (HaveBullets)
             {
                 Bullets--;
                 player.TakeDamage(_damage);
@@ -85,12 +87,14 @@ namespace weapon
 
     class Bot
     {
-        private Weapon _weapon;
+        private readonly Weapon _weapon;
 
         public Bot(Weapon weapon)
         {
             if (weapon is null)
                 throw new ArgumentNullException($"раз в 100 лет и {nameof(weapon)} стреляет");
+
+            _weapon = weapon;
         }
 
         public void OnSeePlayer(Player player)
