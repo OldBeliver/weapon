@@ -24,11 +24,19 @@ namespace weapon
     *
     */
 
-    
+    class Program 
+    {
+        private  static void Main()
+        {
+            Bot bot = new Bot();
+            bot.OnSeePlayer(null);
+        }
+    }
+
 
     class Weapon
     {
-        private readonly int _damage;
+        private readonly int _damage = 5;
         private int _bullets;
 
         public void Fire(Player player)
@@ -59,11 +67,13 @@ namespace weapon
 
     class Bot
     {
-        private Weapon _weapon;
+        private Weapon _weapon = new Weapon();
 
         public void OnSeePlayer(Player player)
         {
-            if (player != null)
+            if (player is null)
+                throw new ArgumentOutOfRangeException($"Achtung {nameof(player)} null-объект");
+
                 _weapon.Fire(player);
         }
     }
