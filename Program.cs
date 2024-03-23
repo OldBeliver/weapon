@@ -36,14 +36,15 @@ namespace weapon
 
     class Weapon
     {
-        private readonly int _damage = 5;
-        private int _bullets;
+        private readonly int _damage;
+
+        //public int Bullets { get; private set; }
 
         public void Fire(Player player)
         {
-            if (_bullets > 0)
+            if (Bullets > 0)
             {
-                _bullets--;
+                Bullets--;
                 player.TakeDamage(_damage);
             }
         }
@@ -56,7 +57,7 @@ namespace weapon
         public void TakeDamage(int damage)
         {
             if (damage < 0)
-                return;
+                throw new ArgumentOutOfRangeException($"отрицательный {nameof(damage)}");
 
             if (damage >= _health)
                 _health = 0;
@@ -67,12 +68,12 @@ namespace weapon
 
     class Bot
     {
-        private Weapon _weapon = new Weapon();
+        private Weapon _weapon;
 
         public void OnSeePlayer(Player player)
         {
             if (player is null)
-                throw new ArgumentOutOfRangeException($"Achtung {nameof(player)} null-объект");
+                throw new ArgumentNullException($"{nameof(player)} null-объект");
 
                 _weapon.Fire(player);
         }
