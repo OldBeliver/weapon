@@ -2,36 +2,6 @@
 
 namespace weapon
 {
-    /*
-     * 
-     *  
-        1.   public void Fire(Player player) - в каждом публичном методе нужна проверка аргументов  на null/outOfRange и бросать исключение в случае ошибки
-        
-        2.   _bullets > 0 - это лучше вынести в свойство
-        
-        3.   if (damage < 0)
-                return; - нужно бросать исключение, это исключительная ситуация когда урон отрицательный
-        
-        4.   if (damage >= _health)
-                _health = 0;
-            else
-                _health -= damage; - лучше использовать Math.Max
-        
-        5.   if (player != null)
-                _weapon.Fire(player); - тут так же будет тихо глючить если мы передадим null, нужно исключние
-        
-        6. Для всех классов нужны конструкторы с проверкой аргументов на null/outOfRange
-    *
-    */
-
-    //class Program 
-    //{
-    //    private  static void Main()
-    //    {
-    //    }
-    //}
-
-
     class Weapon
     {
         private readonly int _damage;
@@ -39,7 +9,7 @@ namespace weapon
         public Weapon(int damage, int bullets)
         {
             if (_damage < 0)
-                throw new ArgumentOutOfRangeException($"{nameof(damage)} неожиданно стал отрицательным");
+                throw new ArgumentOutOfRangeException($"{nameof(damage)} нелетальное оружие");
 
             if (bullets < 0)
                 throw new ArgumentOutOfRangeException($"подайте {nameof(bullets)} поручик Галицин");
