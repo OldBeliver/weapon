@@ -41,10 +41,7 @@ namespace weapon
 
         public void TakeDamage(int damage)
         {
-            if (damage < 0)
-                throw new ArgumentOutOfRangeException($"отрицательный {nameof(damage)}");
-
-            _health = Math.Max(0, _health - damage);
+            _health = damage >= 0 ? Math.Max(0, _health - damage) : throw new ArgumentOutOfRangeException(nameof(damage));
         }
     }
 
