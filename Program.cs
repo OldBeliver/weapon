@@ -32,7 +32,6 @@ namespace weapon
 
             Bullets--;
             player.TakeDamage(_damage);
-
         }
     }
 
