@@ -8,14 +8,9 @@ namespace weapon
 
         public Weapon(int damage, int bullets)
         {
-            if (_damage < 0)
-                throw new ArgumentOutOfRangeException($"{nameof(damage)} нелетальное оружие");
+            _damage = damage >= 0 ? damage : throw new ArgumentOutOfRangeException(nameof(damage));
 
-            if (bullets < 0)
-                throw new ArgumentOutOfRangeException($"подайте {nameof(bullets)} поручик Галицин");
-
-            _damage = damage;
-            Bullets = bullets;
+            Bullets = bullets >= 0 ? bullets : throw new ArgumentOutOfRangeException(nameof(bullets));
         }
 
         public int Bullets { get; private set; }
@@ -62,10 +57,10 @@ namespace weapon
 
         public Bot(Weapon weapon)
         {
-            if (weapon is null)
-                throw new ArgumentNullException($"раз в 100 лет и {nameof(weapon)} стреляет");
+            //if (weapon is null)
+            //    throw new ArgumentNullException($"раз в 100 лет и {nameof(weapon)} стреляет");
 
-            _weapon = weapon;
+            _weapon = weapon ?? throw new ArgumentNullException(nameof(weapon)); ;
         }
 
         public void OnSeePlayer(Player player)
