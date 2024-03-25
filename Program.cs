@@ -57,9 +57,6 @@ namespace weapon
 
         public Bot(Weapon weapon)
         {
-            //if (weapon is null)
-            //    throw new ArgumentNullException($"раз в 100 лет и {nameof(weapon)} стреляет");
-
             _weapon = weapon ?? throw new ArgumentNullException(nameof(weapon)); ;
         }
 
