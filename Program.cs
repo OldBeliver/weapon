@@ -6,7 +6,7 @@
 
 2. HaveBullets - лучше именовать CanFire
 
-3.             if (health < 0)
+3.          if (health < 0)
             {
                 throw new ArgumentOutOfRangeException($"{_health} уже не то");
             } - придерживайся одного стиля, либо со скобками, либо без
@@ -55,18 +55,19 @@ namespace weapon
 
         public int Bullets { get; private set; }
 
-        public bool HaveBullets => Bullets > 0;
+        public bool CanNotFire => Bullets <= 0;
 
         public void Fire(Player player)
         {
             if (player is null)
                 throw new ArgumentNullException($"цель {nameof(player)} потеряна");
 
-            if (HaveBullets)
-            {
-                Bullets--;
-                player.TakeDamage(_damage);
-            }
+            if (CanNotFire)
+                throw new ArgumentOutOfRangeException(nameof(Bullets));
+
+            Bullets--;
+            player.TakeDamage(_damage);
+
         }
     }
 
