@@ -36,10 +36,7 @@ namespace weapon
 
         public Player(int health)
         {
-            if (health < 0)
-                throw new ArgumentOutOfRangeException($"{_health} уже не то");
-
-            _health = health;
+            _health = health >= 0 ? health : throw new ArgumentOutOfRangeException(nameof(health));
         }
 
         public void TakeDamage(int damage)
