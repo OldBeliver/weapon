@@ -59,6 +59,9 @@ namespace weapon
 
         public void Fire(Player player)
         {
+            if (player is null)
+                throw new ArgumentNullException($"цель {nameof(player)} потеряна");
+
             if (HaveBullets)
             {
                 Bullets--;
@@ -74,9 +77,8 @@ namespace weapon
         public Player(int health)
         {
             if (health < 0)
-            {
                 throw new ArgumentOutOfRangeException($"{_health} уже не то");
-            }
+
 
             _health = health;
         }
